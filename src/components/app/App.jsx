@@ -1,13 +1,9 @@
-import Appartments from '../apartments/Apartments';
 import './App.css';
 import 'bulma/css/bulma.min.css';
+import { Apartments } from '../Apartments';
 
-function App() {
-  return (
-    <div className="App">
-      <Appartments />
-    </div>
-  );
-}
-
-export default App;
+export const App = () => (
+  <div className="App">
+    <Apartments />
+  </div>
+);
