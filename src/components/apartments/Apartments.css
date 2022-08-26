@@ -1,55 +1,37 @@
-.page-title {
-  font-size: 2em;
-  text-align: center;
+.apartments-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .card {
-  display: flex;
-  flex-direction: row;
-  width: 100%!important;
-  border: 5px;
+  margin: 20px;
+  width: 400px;
 }
 
-.card-header {
-  width: 20%;
-  /* box-sizing: border-box;
-  border: 1px solid gray!important; */
-}
-
-.card-content {
-  width: 60%;
-}
-
-.content {
-  padding: 2rem;
-  display: flex;
-  flex-direction: row;
-}
-
-.apartments-info {
-  list-style: none!important;
-  margin: 0!important;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.apartments-info li {
-  margin: 0!important;
-  display: block;
-  box-sizing: content-box;
+.content ul {
+  list-style: none;
+  margin: 0;
 }
 
 .card-footer {
-  width: 20%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-self: center;
-
+  justify-content: center;
 }
 
-.card-footer button {
-  border-right: none;
+.card-buttons {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.card-buttons li:first-child {
+  margin-right: 60px;
+}
+
+.card-buttons button {
+  width: 100px;
 }

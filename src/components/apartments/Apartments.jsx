@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { getApartments } from '../../api';
 import { Loader } from '../Loader';
 import { Error } from '../Error';
+import { ApartmentsTitle } from '../ApartmentsTitle';
+import { Filter } from '../Filter';
 
 export const Apartments = () => {
   const [error, setError] = useState(null);
@@ -35,10 +37,23 @@ export const Apartments = () => {
     return <Loader />;
   }
 
+  const onFilter = async (rooms, price) => {
+    const filterObj = {};
+    if (rooms && rooms !== "not-selected") {
+      filterObj.rooms = rooms;
+    } 
+    if (price && price !== "not-selected") {
+      filterObj.price = price;
+    } 
+    const result = await getApartments(filterObj);
+    return setItems(result.data);
+  }
+
   return (
     <div className="Apartments">
-      <div className="page-title">Available Apartments ({items.length})</div>
-      <ul>
+      <ApartmentsTitle rooms = {items.length}/>
+      <Filter onFilter={onFilter}/>
+      <ul className="apartments-list">
         {items.map(apartment => {
           return (<li key={apartment._id}>
             <div className="card">
@@ -57,8 +72,14 @@ export const Apartments = () => {
                 </div>
               </div>
               <footer className="card-footer">
-                <button className="card-footer-item">Edit</button>
-                <button className="card-footer-item">Delete</button>
+                <ul className="card-buttons">
+                  <li>
+                    <button className="button is-success">Edit</button>
+                  </li>
+                  <li>
+                    <button className="button is-danger">Delete</button>
+                  </li>
+                </ul>
               </footer>
             </div>
           </li>)

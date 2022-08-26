@@ -1,0 +1,12 @@
+.Filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.filter-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 400px;
+}
