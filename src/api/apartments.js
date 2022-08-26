@@ -21,3 +21,14 @@ export const getApartments = ({ price, rooms } = {}) => {
 
   return fetch(endpoint).then(res => res.json());
 };
+
+export const deleteApartments = (id) => {
+  let endpoint = `${BASE_URL}/apartments/`;
+  if (id) {
+    endpoint += `${id}`;
+  }
+
+  return fetch(endpoint, {
+    method: 'DELETE',
+  }).then(res => res.json());
+}
