@@ -6,12 +6,14 @@ import { Error } from '../Error';
 import { ApartmentsTitle } from '../ApartmentsTitle';
 import { Filter } from '../Filter';
 import { ApartmentItem } from '../ApartmentItem';
+import { DeleteModal } from '../DeleteModal';
 
 export const Apartments = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [items, setItems] = useState([]);
   const [isInitialLoaded, setIsInitialLoaded] = useState(false);
+  const [deletingApartment, setDeletingApartment] = useState(null);
 
   const fetchApartments = async (options) => {
     try {
@@ -45,6 +47,11 @@ export const Apartments = () => {
     fetchApartments(filterObj);
   };
 
+  const handleDelete = () => {
+    setDeletingApartment(null);
+    fetchApartments();
+  };
+
   if (error) {
     return <Error error={error} />
   }
@@ -53,7 +60,7 @@ export const Apartments = () => {
     <div className="Apartments">
       {isLoading && <Loader />}
 
-      <ApartmentsTitle rooms = {items.length}/>
+      <ApartmentsTitle rooms={items.length} />
 
       <div className="columns">
         <div className="column is-one-third">
@@ -63,12 +70,18 @@ export const Apartments = () => {
       </div>
       <div className="columns is-multiline">
         {items.map(apartment => (
-          <div className="column is-one-third">
-            <ApartmentItem key={apartment._id} apartment={apartment} />
+          <div className="column is-one-third" key={apartment._id}>
+            <ApartmentItem
+              apartment={apartment} onDeleteClick={(data) => setDeletingApartment(data)}
+            />
           </div>
         ))}
       </div>
       {!items.length && (<div className="has-text-centered mt-6">There is no apartments available</div>)}
+
+      {deletingApartment && <DeleteModal
+        apartment={deletingApartment} onDelete={handleDelete} onClose={() => setDeletingApartment(null)}
+      />}
     </div>
   );
 };
