@@ -1,6 +1,6 @@
 import './ApartmentItem.css';
 
-export const ApartmentItem = ({ apartment, onDeleteClick }) => (
+export const ApartmentItem = ({ apartment, onDeleteClick, onEditClick }) => (
   <div className="card ApartmentItem">
     <header className="card-header">
       <p className="card-header-title">
@@ -18,7 +18,7 @@ export const ApartmentItem = ({ apartment, onDeleteClick }) => (
     </div>
     <footer className="card-footer">
       <div className="card-footer-item">
-        <button className="button is-success">Edit</button>
+        <button onClick={() => onEditClick(apartment)} className="button is-success">Edit</button>
       </div>
       <div className="card-footer-item">
         <button onClick={() => onDeleteClick(apartment)} className="button is-danger">Delete</button>

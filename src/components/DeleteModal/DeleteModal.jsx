@@ -30,11 +30,9 @@ export const DeleteModal = ({ apartment, onClose, onDelete }) => {
           {isLoading && <Loader size="small" />}
           {error && <Error error={error} />}
 
-          <header className="card-header">
-            <p className="card-content">
-              Are you sure you want to delete {apartment.name} apartment?
-            </p>
-          </header>
+          <div className="card-content">
+            Are you sure you want to delete {apartment.name} apartment?
+          </div>
           <footer className="card-footer">
             <div className="card-footer-item">
               <button onClick={handleDelete} className="button is-success">Confirm</button>

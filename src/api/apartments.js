@@ -27,3 +27,29 @@ export const deleteApartment = (id) => {
 
   return fetch(endpoint, { method: 'DELETE', }).then(res => res.json());
 };
+
+export const editApartment = (id, apartment) => {
+  const endpoint = `${BASE_URL}/apartments/${id}`;
+
+  return fetch(endpoint, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(apartment)
+  }).then(res => res.json());
+};
+
+export const addApartment = (apartment) => {
+  const endpoint = `${BASE_URL}/apartments`;
+
+  return fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(apartment)
+  }).then(res => res.json());
+};
